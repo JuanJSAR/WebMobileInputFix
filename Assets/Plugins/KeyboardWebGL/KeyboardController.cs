@@ -13,7 +13,7 @@ namespace WebGLKeyboard
     {
         public bool isKeyboardOpen = false;
         public UnityEngine.UI.InputField currentNativeInput;
-#if USE_TMPRO
+#if TMP_PRESENT
         public TMPro.TMP_InputField currentTmproInput;
 #endif
         [DllImport("__Internal")]
@@ -69,7 +69,7 @@ namespace WebGLKeyboard
                 detect.Initialize(this);
             }
 
-#if USE_TMPRO
+#if TMP_PRESENT
             List<TMPro.TMP_InputField> tmProInputs = FindObjectsOfTypeInScene<TMPro.TMP_InputField>(scene);
             for (int x = 0; x < tmProInputs.Count; x++)
             {
@@ -98,7 +98,7 @@ namespace WebGLKeyboard
 #endif
         }
 
-#if USE_TMPRO
+#if TMP_PRESENT
         /// <summary>
         /// Call the external javascript function to trigger the keyboard and link to the input field
         /// </summary>
@@ -144,7 +144,7 @@ namespace WebGLKeyboard
                 currentNativeInput.DeactivateInputField();
                 currentNativeInput = null;
             }
-#if USE_TMPRO
+#if TMP_PRESENT
             if (currentTmproInput != null)
             {
                 currentTmproInput.DeactivateInputField();
@@ -174,7 +174,7 @@ namespace WebGLKeyboard
             {
                 currentNativeInput.text = value;
             }
-#if USE_TMPRO
+#if TMP_PRESENT
             if (currentTmproInput != null)
             {
                 currentTmproInput.text = value;

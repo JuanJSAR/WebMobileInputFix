@@ -12,7 +12,7 @@ namespace WebGLKeyboard
     {
         private KeyboardController controller = null;
         private UnityEngine.UI.InputField nativeInput;
-#if USE_TMPRO
+#if TMP_PRESENT
         private TMPro.TMP_InputField tmproInput;
 #endif
 
@@ -20,7 +20,7 @@ namespace WebGLKeyboard
         {
             controller = _controller;
             nativeInput = gameObject.GetComponent<UnityEngine.UI.InputField>();
-#if USE_TMPRO
+#if TMP_PRESENT
             tmproInput = gameObject.GetComponent<TMPro.TMP_InputField>();
 #endif
         }
@@ -34,7 +34,7 @@ namespace WebGLKeyboard
             {
                 controller.FocusInput(nativeInput);
             }
-#if USE_TMPRO
+#if TMP_PRESENT
             if (tmproInput != null)
             {
                 controller.FocusInput(tmproInput);
