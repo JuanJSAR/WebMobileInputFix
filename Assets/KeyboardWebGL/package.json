@@ -1,11 +1,11 @@
 {
-    "name": "bolt.addons.community",
-    "displayName": "Bolt Addons Community",
-    "version": "2.4.1",
+    "name": "com.webgl.mobileinputfix",
+    "displayName": "WebGL Mobile Input Fix",
+    "version": "1.0.0",
     "unity": "2018.4",
-    "description": "A community-driven project for extending Unity Bolt with custom nodes, types, and helpers.",
-    "keywords": [ "bolt", "addons", "community", "events", "fundamentals", "utility" ],
-    "license": "MIT",
-    "category": "Addons",
+    "description": "A Unity WebGL workaround to enable mobile input (virtual keyboard) be triggered by Input Fields",
+    "keywords": [ "webgl", "mobile", "input", "fix", "utility" ],
+    "license": "CC0",
+    "category": "Utility",
     "dependencies": {}
 }
