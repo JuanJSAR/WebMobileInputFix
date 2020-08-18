@@ -10,7 +10,7 @@ Simply add the "KeyboardController" component to any object in the scene
 ## How it works
 This workaround is a combination of getting inputs natively from a html input field and binds them to a Input Field
 KeyboardController.cs is a Singleton that will manage automatically this binding of input fields and will be the bridge between the native javascript calls and the interaction with input fields.
-This solution works with TMPro Input fields, just add the DEFINE #USE_TMPRO to your project
+This solution works with TMPro Input fields, just add the DEFINE #TMP_PRESENT to your project
 
 If you are using a custom index.html template, check the FixIndexFile.cs script, because it is a post build process to add some necessary entries to the index.html file
 (or add this to your index.html manually)
