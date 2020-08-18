@@ -20,7 +20,7 @@ namespace WebGLKeyboard
         private static extern void OpenInputKeyboard(string str);
         [DllImport("__Internal")]
         private static extern void CloseInputKeyboard();
-        
+
         //Just adds these functions references to avoid stripping
         [DllImport("__Internal")]
         private static extern void FixInputOnBlur();
@@ -31,10 +31,12 @@ namespace WebGLKeyboard
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
+
         void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
+
         private void Start()
         {
             PadronizeObjectName();
@@ -43,6 +45,7 @@ namespace WebGLKeyboard
 
             DontDestroyOnLoad(gameObject);
         }
+
         /// <summary>
         /// Changes this object name and parent to guarantee that it will be accessible from the outside javascript functions
         /// </summary>
@@ -51,6 +54,7 @@ namespace WebGLKeyboard
             gameObject.name = "_WebGLKeyboard";
             gameObject.transform.SetParent(null);
         }
+
         /// <summary>
         /// Callback when scene loads to add the DetectFocus component to every input field
         /// </summary>
@@ -74,6 +78,7 @@ namespace WebGLKeyboard
             }
 #endif
         }
+
         /// <summary>
         /// Call the external javascript function to trigger the keyboard and link to the input field
         /// </summary>
@@ -82,12 +87,17 @@ namespace WebGLKeyboard
         {
             isKeyboardOpen = true;
             currentNativeInput = input;
+#if UNITY_EDITOR
+            Debug.Log("OpenInputKeyboard");
+#else
             OpenInputKeyboard(input.text);
+#endif
 
 #if !UNITY_EDITOR && UNITY_WEBGL
             UnityEngine.WebGLInput.captureAllKeyboardInput = false;
 #endif
         }
+
 #if USE_TMPRO
         /// <summary>
         /// Call the external javascript function to trigger the keyboard and link to the input field
@@ -97,7 +107,11 @@ namespace WebGLKeyboard
         {
             isKeyboardOpen = true;
             currentTmproInput = input;
+#if UNITY_EDITOR
+            Debug.Log("OpenInputKeyboard");
+#else
             OpenInputKeyboard(input.text);
+#endif
 
 #if !UNITY_EDITOR && UNITY_WEBGL
             UnityEngine.WebGLInput.captureAllKeyboardInput = false;
@@ -109,8 +123,13 @@ namespace WebGLKeyboard
         /// </summary>
         public void ForceClose()
         {
+#if UNITY_EDITOR
+            Debug.Log("CloseInputKeyboard");
+#else
             CloseInputKeyboard();
+#endif
         }
+
         /// <summary>
         /// Clear the link to the open keyboard
         /// </summary>
@@ -126,7 +145,7 @@ namespace WebGLKeyboard
                 currentNativeInput = null;
             }
 #if USE_TMPRO
-            if(currentTmproInput != null)
+            if (currentTmproInput != null)
             {
                 currentTmproInput.DeactivateInputField();
                 currentTmproInput = null;
@@ -137,6 +156,7 @@ namespace WebGLKeyboard
             UnityEngine.WebGLInput.captureAllKeyboardInput = true;
 #endif
         }
+
         /// <summary>
         /// Receives the string inputed in the keyboard
         /// </summary>
@@ -161,6 +181,10 @@ namespace WebGLKeyboard
             }
 #endif
         }
+
+        public void InputOnBlurFix() { FixInputOnBlur(); }
+        public void InputUpdateFix() { FixInputUpdate(); }
+
         /// <summary>
         /// Returns all objects of a type in a loaded scene
         /// </summary>
