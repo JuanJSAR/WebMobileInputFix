@@ -17,16 +17,22 @@ If you are using a custom index.html template, check the FixIndexFile.cs script,
 
 ```
 <script>
-		function FixInputOnSubmit() {
-			document.getElementById("fixInput").blur();
-			event.preventDefault();
-		}
-	</script>
-    <div>
-		<form onsubmit="FixInputOnSubmit()" autocomplete="off" style="width: 0px; height: 0px; position: absolute; top: -9999px;">
-			<input type="text" id="fixInput" oninput="gameInstance.Module.ccall('FixInputUpdate', null)" onblur="gameInstance.Module.ccall('FixInputOnBlur', null)" style="font-size: 42px;">
-		</form>
-	</div>
+	function FixInputOnSubmit() {
+		document.getElementById("fixInput").blur();
+		event.preventDefault();
+	}
+	function FixInputOnBlur() {
+		gameInstance.SendMessage('_WebGLKeyboard', 'LoseFocus');
+	}
+	function FixInputUpdate() {
+		gameInstance.SendMessage('_WebGLKeyboard', 'ReceiveInputChange', document.getElementById("fixInput").value);
+	}
+</script>
+<div>
+	<form onsubmit="FixInputOnSubmit()" autocomplete="off" style="width: 0px; height: 0px; position: absolute; top: -9999px;">
+		<input type="text" id="fixInput" oninput="FixInputUpdate()" onblur="FixInputOnBlur()" style="font-size: 42px;">
+	</form>
+</div>
 ```
 
 ## Known problems
