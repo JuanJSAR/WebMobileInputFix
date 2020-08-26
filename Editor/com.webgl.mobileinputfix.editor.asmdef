@@ -1,0 +1,16 @@
+{
+    "name": "com.webgl.mobileinputfix.editor",
+    "references": [
+        "com.webgl.mobileinputfix"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
